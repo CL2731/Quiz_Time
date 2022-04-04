@@ -1,30 +1,68 @@
-var beginBtn = document.querySelector("#begin");
-var timeLeft = document.querySelector("#timeleft");
-var questionplace = document.querySelector("#questions")
-var time
-var secondsleft = 60;
-var quesArray = [{question:"Which one of these are not a 'sidekick' (good or evil) in a disney film?", choices: ["Pascal", "Undertow", "Gurgi", "Abu"], answer:"Gurgi"}, {question:"Which one of these horses are not form a disney film?", choices:["Cleo", "Angus", "Buck", "Maximus"], answer:"Cleo"}]
-var x = 0;
-console.log(beginBtn)
-beginBtn.addEventListener("click", startgame);
+var questions = [
+    {
+        title: "Which one of these are not a 'sidekick' (good or evil) in a disney film?",
+        choices: ["Pascal", "Undertow", "Gurgi", "Abu"],
+        answer: "Gurgi"
+    },
+    {
+        title: "Which one of these are not a 'sidekick' (good or evil) in a disney film?",
+        choices: ["Pascal", "Undertow", "Gurgi", "Abu"],
+        answer: "Gurgi"
+    },
+]
 
-function startgame(){
-    time = setInterval(function countdown(){
-        if (secondsleft > 0){
-        secondsleft --;
-        timeLeft.textContent= secondsleft
-        } else {
-            console.log("end game");
-        } 
-    }, 1000)
-    console.log("game started");
-    maingame()
+var currentQuesIndex = 0;
+var timerId
+var time = questions.length * 5;
+var questionelement = document.getElementById("questions")
+var choiceselement = document.getElementById("choices")
+var timerelement = document.getElementById("time")
+var submitbtn = document.getElementById("submit")
+var startbtn = document.getElementById("start")
+var feedback = document.getElementById("feedback")
+var initialsElememnt = document.getElementById("initials")
+
+function startquiz(){
+    var startscreen = document.getElementById("startscreen")
+    startscreen.setAttribute("class", "hide")
+    questionelement.removeAttribute("class")
+    timerId = setInterval(clockTick, 1000)
+    timerelement.textContent = time
+    getQuestion();
 }
 
-function maingame(){
-    console.log(quesArray [x]);
-    questionplace.textContent = quesArray[x].question
-        for (let i=0; i < quesArray[x].choices.length; i++){
-            
-        }
+function getQuestion(){
+    var currentQuestion = questions[currentQuesIndex];
+    var titleElement = document.getElementById("question-title");
+    titleElement.textContent = currentQuestion.title;
+    choiceselement.innerHTML = "";
+    currentQuestion.choices.forEach(function (choice, i){
+        var choicenode = document.createElement("button")
+        choicenode.setAttribute("class", "choice")
+        choicenode.setAttribute("value", choice)
+        choicenode.textContent = i + 1 + "." + choice;
+        choicenode.onclick = questionclick;
+        choiceselement.appendChild(choicenode)
+    })
 }
+
+// function startgame() {
+//     time = setInterval(function countdown() {
+//         if (secondsleft > 0) {
+//             secondsleft--;
+//             timeLeft.textContent = secondsleft
+//         } else {
+//             console.log("end game");
+//         }
+//     }, 1000)
+//     console.log("game started");
+//     maingame()
+// }
+
+// function maingame() {
+//     console.log(quesArray[x]);
+//     questionplace.textContent = quesArray[x].question
+//     for (let i = 0; i < quesArray[x].choices.length; i++) {
+
+//     }
+// }

@@ -1,25 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    
-    <title>Document</title>
+
+    <title> Quiz time </title>
 </head>
+
 <body>
-    <div class="contents">
-        <div class="control">  
-            <button id="begin" class="begin-btn"> Begin Quiz </button>
-            <h1 class="time"> Time Left <h1 id="timeleft"> </h1></h1>
+    <!-- provideing user feedback -->
+    <div class="scores"> <a href="highscore.html"> View highscores </a> </div>
+    <div class="timer"> Time: <span id="time"> 0 </span> </div>
+    <!-- wrapper holding display content -->
+    <div class="contents wrapper">
+        <!-- start screen -->
+        <div id="startscreen" class="start">
+            <h1> Quiz Time </h1>
+            <p>
+                Instruciton
+            </p>
+            <button id="start" class="begin-btn"> Begin Quiz </button>
         </div>
-    </div>
-        <div id="question-cont"></div>
-        <div id="questions"> </div>
-        <div id="pos-answers" class="btns">
+        <!-- currently hidden will iterate new questions -->
+        <div id="questions" class="hide">
+            <h3 id="question-title"></h3>
+            <div id="choices" class="choices"></div>
         </div>
-        
-<script src="./assets/js/script.js"></script>
+        <!-- currently hidden displays final score and prompts for initials -->
+        <div id="end-screen" class="hide">
+            <h3> You have finished. </h3>
+            <p> Test score is: <span id="final score"></span>  .</p>
+            <p> Enter Initials <input type="text" id="initials">
+            <button id="submit"> Submit initials here. </button>
+            </p>
+            <div id="feedback" class="feedback hide"></div>
+        </div> 
+
+        <script src="./assets/js/script.js"></script>
 </body>
+
 </html>
