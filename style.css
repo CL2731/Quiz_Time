@@ -28,10 +28,8 @@
     cursor: pointer;
 }
 
-.contin-btn:hover{
-    background-color: black;
-    color: aliceblue;
-    cursor: pointer;
+.hide{
+    display: none;
 }
 
 .contents{
