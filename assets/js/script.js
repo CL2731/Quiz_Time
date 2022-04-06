@@ -1,24 +1,39 @@
 var questions = [
     {
-        title: "Which one of these are not a 'sidekick' (good or evil) in a disney film?1",
+        title: "Which one of these are not a 'sidekick' (good or evil) in a disney film?",
         choices: ["Pascal", "Undertow", "Gurgi", "Abu"],
         answer: "Gurgi"
     },
     {
-        title: "Which one of these are not a 'sidekick' (good or evil) in a disney film?2",
-        choices: ["Pascal", "Undertow", "Gurgi", "Abu"],
-        answer: "Gurgi"
+        title: "How many brothers does Prince Hans of the Southern Isles have in Frozen?",
+        choices: ["5", "0", "9", "12"],
+        answer: "12"
     },
     {
-        title: "Which one of these are not a 'sidekick' (good or evil) in a disney film?2",
-        choices: ["Pascal", "Undertow", "Gurgi", "Abu"],
-        answer: "Gurgi"
-    }
+        title: "Which one of these horses are not from a disney film?",
+        choices: ["Cleo", "Angus", "Buck", "Maximus"],
+        answer: "Cleo"
+    },
+    {
+        title: "What is the name of Andys neighbor in Toy Story?",
+        choices: ["Sid", "John", "Timothy", "Andy"],
+        answer: "Sid"
+    },
+    {
+        title: "What is the name of Ariel and Prince Erics daughter?",
+        choices: ["Jessie", "Clementine", "Meoldy", "Adella"],
+        answer: "Melody"
+    },
+    {
+        title: "Which Disney Princess attended Elsas coronation day in Arendelle?",
+        choices: ["Ariel", "Meriada", "Cinderella", "Rapunzel"],
+        answer: "Rapunzel"
+    },
 ]
 
 var currentQuesIndex = 0;
-var timerId
-var time = questions.length * 5;
+var timerId 
+var time = 45;
 var questionElement = document.getElementById("questions")
 var choicesElement = document.getElementById("choices")
 var timerElement = document.getElementById("time")
@@ -28,8 +43,8 @@ var feedBack = document.getElementById("feedback")
 var initialsElememnt = document.getElementById("initials")
 
 function startQuiz(){
-    var startscreen = document.getElementById("startscreen")
-    startscreen.setAttribute("class", "hide")
+    var startScreen = document.getElementById("startscreen")
+    startScreen.setAttribute("class", "hide")
     questionElement.removeAttribute("class")
     timerId = setInterval(clockTick, 1000)
     timerElement.textContent = time
@@ -45,7 +60,7 @@ function getQuestion(){
         var choicenode = document.createElement("button")
         choicenode.setAttribute("class", "choice")
         choicenode.setAttribute("value", choice)
-        choicenode.textContent = i + 1 + "." + choice;
+        choicenode.textContent = i + 1 + ". " + choice;
         choicenode.onclick = questionClick;
         choicesElement.appendChild(choicenode)
     })
@@ -84,9 +99,10 @@ function quizEnd(){
 }
 function clockTick(){
     clearInterval(timerId);
+    time = 45;
     time--;
     timerElement.textContent = time;
-    if(time <= 0){
+    if(time === 0){
         quizEnd();
     }
 }
@@ -110,4 +126,4 @@ function checkForEntry(event){
 
 submitBtn.onclick = highScore;
 startBtn.onclick = startQuiz;
-initialsElememnt.onkeyup = checkForEntry;
+initialsElememnt.onKeyUp = checkForEntry;
