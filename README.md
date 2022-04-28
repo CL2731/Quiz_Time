@@ -1,5 +1,8 @@
 # Quiz_Time
 
+### License
+##### -MIT
+
 ### Purpose
 A short quiz to test some of your disney tivia knowledge. Answer a question wrong and the timer drops down, and if it hits 0 before you finish you lose.
 
